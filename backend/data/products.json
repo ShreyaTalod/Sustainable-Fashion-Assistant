@@ -1,0 +1,42 @@
+[
+    { "name": "Off-White T-shirt", "price": 499, "category": "Organic T-shirts", "image": "tshirt1.jpg" },
+    { "name": "Pastel pink T-shirt", "price": 499, "category": "Organic T-shirts", "image": "tshirt2.jpg" },
+    { "name": "Sky blue Tee", "price": 499, "category": "Organic T-shirts", "image": "tshirt3.jpg" },
+    { "name": "Pastel Green T-shirt", "price": 499, "category": "Organic T-shirts", "image": "tshirt4.jpg" },
+  
+    { "name": "Blue Denim Jeans", "price": 999, "category": "Recycled Jeans", "image": "jeans1.jpg" },
+    { "name": "Faded Blue Jeans", "price": 999, "category": "Recycled Jeans", "image": "jeans2.jpg" },
+    { "name": "Beige Denim Jeans", "price": 999, "category": "Recycled Jeans", "image": "jeans3.jpg" },
+    { "name": "Dark Washed Jeans", "price": 999, "category": "Recycled Jeans", "image": "jeans4.jpg" },
+  
+    { "name": "Vegan Canvas Sneakers", "price": 1299, "category": "Footwear (Sneakers/Shoes)", "image": "footwear1.jpg" },
+    { "name": "Classic Canvas Shoes", "price": 1299, "category": "Footwear (Sneakers/Shoes)", "image": "footwear2.jpg" },
+    { "name": "Eco Suede Sneakers", "price": 1299, "category": "Footwear (Sneakers/Shoes)", "image": "footwear3.jpg" },
+    { "name": "Street Style Shoes", "price": 1299, "category": "Footwear (Sneakers/Shoes)", "image": "footwear4.jpg" },
+  
+    { "name": "Green Leather Jacket", "price": 1799, "category": "Vegan Jackets", "image": "jacket1.jpg" },
+    { "name": "Natural Beige Jacket", "price": 1799, "category": "Vegan Jackets", "image": "jacket2.jpg" },
+    { "name": "Lovely Pink Jacket", "price": 1799, "category": "Vegan Jackets", "image": "jacket3.jpg" },
+    { "name": "Black Leather Jacket", "price": 1799, "category": "Vegan Jackets", "image": "jacket4.jpg" },
+  
+    { "name": "Wool Beanie", "price": 399, "category": "Sustainable Hats", "image": "hat1.jpg" },
+    { "name": "Canvas Bucket Hat", "price": 399, "category": "Sustainable Hats", "image": "hat2.jpg" },
+    { "name": "Recycled Lavender Hat", "price": 399, "category": "Sustainable Hats", "image": "hat3.jpg" },
+    { "name": "Recycled Fiber Hat", "price": 399, "category": "Sustainable Hats", "image": "hat4.jpg" },
+  
+    { "name": "Eco Scarf", "price": 299, "category": "Eco Accessories", "image": "accessory1.jpg" },
+    { "name": "Hemp Wallet", "price": 299, "category": "Eco Accessories", "image": "accessory2.jpg" },
+    { "name": "Woven Wristband", "price": 299, "category": "Eco Accessories", "image": "accessory3.jpg" },
+    { "name": "Eco Towel", "price": 299, "category": "Eco Accessories", "image": "accessory4.jpg" },
+  
+    { "name": "Natural Canvas Tote", "price": 299, "category": "Tote Bags", "image": "tote1.jpg" },
+    { "name": "Hemp Fiber Tote", "price": 299, "category": "Tote Bags", "image": "tote2.jpg" },
+    { "name": "Printed Eco Tote", "price": 299, "category": "Tote Bags", "image": "tote3.jpg" },
+    { "name": "Foldable Tote Bag", "price": 299, "category": "Tote Bags", "image": "tote4.jpg" },
+  
+    { "name": "Classic Bamboo Shades", "price": 799, "category": "Bamboo Sunglasses", "image": "sunglasses1.jpg" },
+    { "name": "Dark Lens Glasses", "price": 799, "category": "Bamboo Sunglasses", "image": "sunglasses2.jpg" },
+    { "name": "Classic Eco Bamboo", "price": 799, "category": "Bamboo Sunglasses", "image": "sunglasses3.jpg" },
+    { "name": "Vintage Style Bamboo", "price": 799, "category": "Bamboo Sunglasses", "image": "sunglasses4.jpg" }
+  ]
+  

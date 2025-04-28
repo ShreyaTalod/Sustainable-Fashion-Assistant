@@ -1,0 +1,20 @@
+.order-success {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #2e7d32;
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    padding-top: 4rem;
+  }
+  
+  .smiley {
+    position: absolute;
+    font-size: 2rem;
+    user-select: none;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+  }
+  
+  
