@@ -10,7 +10,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true, // Only needed if using cookies or sessions
+}));
 app.use(express.json());
 
 // MongoDB Connection
@@ -40,6 +43,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
+
 
 
 
