@@ -1,51 +1,72 @@
+/* Home.css */
+
 .home-container {
-    text-align: center;
-    padding: 60px 20px;
-    background: #f3fdf5;
-    min-height: 80vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .home-container h1 {
-    font-size: 2.5rem;
-    color: #1a4d2e;
-    margin-bottom: 20px;
-  }
-  
-  .home-container p {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 30px;
-  }
-  
-  .home-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .home-btn {
-    background-color: #3fa34d;
-    color: white;
-    padding: 14px 30px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-btn:hover {
-    background-color: #2b843a;
-  }
-  
-  .home-btn.secondary {
-    background-color: #5dbb63;
-  }
-  
-  .home-btn.secondary:hover {
-    background-color: #469c4b;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background: #f0f9f2; /* soft eco-friendly greenish background */
+  text-align: center;
+  padding: 20px;
+}
+
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.brand-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.brand-name {
+  font-size: 2.5rem;
+  color: #2d6a4f; /* deep green for name */
+  font-weight: bold;
+}
+
+.brand-tagline {
+  font-size: 1.2rem;
+  color: #40916c; /* lighter green */
+  margin-bottom: 10px;
+}
+
+.home-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-btn {
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  background-color: #52b788; /* soft green */
+  transition: background-color 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #40916c;
+}
+
+.home-btn.secondary {
+  background-color: #d8f3dc;
+  color: #2d6a4f;
+  border: 2px solid #95d5b2;
+}
+
+.home-btn.secondary:hover {
+  background-color: #b7e4c7;
+}
+
   
   

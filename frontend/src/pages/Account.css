@@ -1,62 +1,40 @@
 .account-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e8f5e9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .account-box {
-    background-color: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(34, 139, 34, 0.2);
-    width: 320px;
-    text-align: center;
-  }
-  
-  .account-box h2 {
-    color: #2e7d32;
-    margin-bottom: 25px;
-  }
-  
-  .account-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .account-form input {
-    padding: 12px;
-    border: 1px solid #a5d6a7;
-    border-radius: 8px;
-    font-size: 15px;
-  }
-  
-  .account-form button {
-    background-color: #2e7d32;
-    color: white;
-    padding: 12px;
-    border: none;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .account-form button:hover {
-    background-color: #1b5e20;
-  }
-  
-  .toggle-text {
-    margin-top: 20px;
-    font-size: 14px;
-  }
-  
-  .toggle-text span {
-    color: #2e7d32;
-    font-weight: bold;
-    cursor: pointer;
-  }
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #f0fdf4;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.account-container h2 {
+  color: #2f855a;
+  margin-bottom: 20px;
+}
+
+.account-container p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.account-container button {
+  padding: 10px 20px;
+  background-color: #38a169;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.account-container button:hover {
+  background-color: #2f855a;
+  transform: scale(1.05);
+}
+
   

@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import { WishlistContext } from "../context/WishlistContext";
 import "./ShoppingItems.css";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 // T-shirts
 import tshirt1 from "../assets/images/tshirt1.jpg";
@@ -50,8 +52,12 @@ import sunglasses2 from "../assets/images/sunglasses2.jpg";
 import sunglasses3 from "../assets/images/sunglasses3.jpg";
 import sunglasses4 from "../assets/images/sunglasses4.jpg";
 
+
 const ShoppingItems = () => {
   const { addToCart } = useContext(CartContext);
+  const { wishlist, toggleWishlist } = useContext(WishlistContext);
+
+  const [selectedSizes, setSelectedSizes] = useState({});
 
   const categories = {
     "Organic T-shirts": [
@@ -104,9 +110,24 @@ const ShoppingItems = () => {
     ],
   };
 
-  const showAddedMessage = (name) => {
-    alert(`${name} added to cart!`);
+  
+  const sizes = ["XS", "S", "M", "L"];
+
+  const handleSizeChange = (itemName, size) => {
+    setSelectedSizes(prev => ({ ...prev, [itemName]: size }));
   };
+
+  const handleAddToCart = (item) => {
+    const size = selectedSizes[item.name];
+    if (!size) {
+      alert("Please select a size before adding to cart.");
+      return;
+    }
+    addToCart({ ...item, size, quantity: 1 });
+    alert(`${item.name} (Size: ${size}) added to cart!`);
+  };
+
+  const isWishlisted = (item) => wishlist.some(w => w.name === item.name);
 
   return (
     <div className="shopping-container">
@@ -116,16 +137,32 @@ const ShoppingItems = () => {
           <div className="product-grid">
             {items.map((item, index) => (
               <div key={index} className="product-card">
+                <div className="wishlist-icon" onClick={() => toggleWishlist(item)}>
+                  {isWishlisted(item) ? (
+                    <FaHeart color="red" />
+                  ) : (
+                    <FaRegHeart color="gray" />
+                  )}
+                </div>
+
                 <img src={item.image} alt={item.name} className="product-image" />
                 <p className="product-name">{item.name}</p>
                 <p className="product-price">{item.price}</p>
-                <button
-                  className="add-to-cart-btn"
-                  onClick={() => {
-                    addToCart({ ...item, quantity: 1 });
-                    showAddedMessage(item.name);
-                  }}
-                >
+
+                <div className="size-selector">
+                  <label>Select Size: </label>
+                  {sizes.map(size => (
+                    <button
+                      key={size}
+                      className={`size-btn ${selectedSizes[item.name] === size ? "selected" : ""}`}
+                      onClick={() => handleSizeChange(item.name, size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+
+                <button className="add-to-cart-btn" onClick={() => handleAddToCart(item)}>
                   Add to Cart
                 </button>
               </div>
@@ -138,8 +175,6 @@ const ShoppingItems = () => {
 };
 
 export default ShoppingItems;
-
-
 
 
 

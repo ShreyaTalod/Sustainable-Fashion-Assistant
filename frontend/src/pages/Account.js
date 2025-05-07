@@ -1,35 +1,33 @@
-import React, { useState } from "react";
-import "./Account.css";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Account.css"; // If you have styles
 
 const Account = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
 
-  const handleToggle = () => setIsSignUp(!isSignUp);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    alert("👋 Logged out successfully");
+    navigate("/login");
+  };
 
   return (
     <div className="account-container">
-      <div className="account-box">
-        <h2>{isSignUp ? "Create Account" : "Welcome Back"}</h2>
-
-        <form className="account-form">
-          {isSignUp && (
-            <input type="text" placeholder="Full Name" required />
-          )}
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-
-          <button type="submit">{isSignUp ? "Sign Up" : "Sign In"}</button>
-        </form>
-
-        <p className="toggle-text">
-          {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-          <span onClick={handleToggle}>
-            {isSignUp ? "Sign In" : "Sign Up"}
-          </span>
-        </p>
-      </div>
+      <h2> Account</h2>
+      {userInfo ? (
+        <div>
+          <p><strong>Name:</strong> {userInfo.name}</p>
+          <p><strong>Email:</strong> {userInfo.email}</p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <p>You are not logged in.</p>
+      )}
     </div>
   );
 };
 
 export default Account;
+
