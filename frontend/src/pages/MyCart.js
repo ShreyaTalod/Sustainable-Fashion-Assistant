@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { useCart } from "../context/CartContext"; // Updated to use useCart hook
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+// src/pages/MyCart.js
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import "./MyCart.css";
 
 const MyCart = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useCart(); // Using the useCart hook
-  const [quantity, setQuantity] = useState(1);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const handleQuantityChange = (index, newQuantity) => {
-    if (newQuantity >= 1) {
+  const handleQuantityChange = (index, change) => {
+    const newQuantity = cartItems[index].quantity + change;
+    if (newQuantity > 0) {
       updateQuantity(index, newQuantity);
     }
   };
@@ -18,15 +19,14 @@ const MyCart = () => {
     removeFromCart(index);
   };
 
+  const handleProceedToBilling = () => {
+    navigate("/billing-success");
+  };
+
   const totalPrice = cartItems.reduce(
-    (sum, item) => sum + parseInt(item.price.replace("₹", "")) * item.quantity,
+    (acc, item) => acc + parseInt(item.price.replace("₹", "")) * item.quantity,
     0
   );
-
-  const handleCheckout = () => {
-    // Navigate to the checkout page
-    navigate("/checkout");
-  };
 
   return (
     <div className="mycart-container">
@@ -43,11 +43,11 @@ const MyCart = () => {
                   <p className="cart-item-name">{item.name}</p>
                   <p className="cart-item-price">{item.price}</p>
                   <div className="quantity-controls">
-                    <button onClick={() => handleQuantityChange(index, item.quantity - 1)}>-</button>
+                    <button onClick={() => handleQuantityChange(index, -1)}>-</button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => handleQuantityChange(index, item.quantity + 1)}>+</button>
+                    <button onClick={() => handleQuantityChange(index, 1)}>+</button>
                   </div>
-                  <button onClick={() => handleRemove(index)} className="remove-button">
+                  <button className="remove-button" onClick={() => handleRemove(index)}>
                     Remove
                   </button>
                 </div>
@@ -56,8 +56,8 @@ const MyCart = () => {
           </div>
           <div className="cart-summary">
             <h3>Total: ₹{totalPrice}</h3>
-            <button onClick={handleCheckout} className="checkout-button">
-              Proceed to Checkout
+            <button className="checkout-button" onClick={handleProceedToBilling}>
+              Place Order
             </button>
           </div>
         </>
@@ -67,6 +67,7 @@ const MyCart = () => {
 };
 
 export default MyCart;
+
 
 
 

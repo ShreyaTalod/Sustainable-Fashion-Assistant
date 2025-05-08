@@ -13,9 +13,6 @@ const Navbar = () => {
         <Link to="/shopping" className="nav-link">
           Shop
         </Link>
-        <Link to="/wishlist" className="nav-link">
-          Wishlist
-        </Link>
         <Link to="/mycart" className="nav-link">
           My Cart
         </Link>
@@ -28,6 +25,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 
