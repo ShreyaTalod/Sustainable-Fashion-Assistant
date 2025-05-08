@@ -3,10 +3,10 @@ import { CartContext } from "../context/CartContext";
 import "./ShoppingItems.css";
 
 // T-shirts
-import tshirt1 from "../assets/images/tshirt1.jpeg";
-import tshirt2 from "../assets/images/tshirt2.jpeg";
-import tshirt3 from "../assets/images/tshirt3.jpeg";
-import tshirt4 from "../assets/images/tshirt4.jpeg";
+import tshirt1 from "../assets/images/tshirt1.jpg";
+import tshirt2 from "../assets/images/tshirt2.jpg";
+import tshirt3 from "../assets/images/tshirt3.jpg";
+import tshirt4 from "../assets/images/tshirt4.jpg";
 
 // Jeans
 import jeans1 from "../assets/images/jeans1.jpg";
