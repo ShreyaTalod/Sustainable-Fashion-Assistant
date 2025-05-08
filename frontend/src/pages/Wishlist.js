@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
 import "./Wishlist.css";
 
 const sizes = ["XS", "S", "M", "L"];
 
-const Wishlist = ({ wishlist, moveToCart }) => {
+const Wishlist = () => {
+  const { wishlist, toggleWishlist } = useWishlist();
+  const { cart, setCart } = useCart();
   const [selectedSizes, setSelectedSizes] = useState({});
 
   const handleSizeSelect = (productId, size) => {
@@ -19,7 +23,23 @@ const Wishlist = ({ wishlist, moveToCart }) => {
       alert("Please select a size to move to cart.");
       return;
     }
-    moveToCart({ ...product, size: selectedSize });
+
+    const exists = cart.find(
+      (item) => item._id === product._id && item.size === selectedSize
+    );
+
+    if (exists) {
+      const updated = cart.map((item) =>
+        item._id === product._id && item.size === selectedSize
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updated);
+    } else {
+      setCart([...cart, { ...product, size: selectedSize, quantity: 1 }]);
+    }
+
+    toggleWishlist(product); // remove from wishlist
   };
 
   return (
@@ -59,3 +79,5 @@ const Wishlist = ({ wishlist, moveToCart }) => {
 };
 
 export default Wishlist;
+
+

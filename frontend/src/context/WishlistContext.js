@@ -1,7 +1,11 @@
 // src/context/WishlistContext.js
-import { useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-const useWishlistContext = () => {
+const WishlistContext = createContext();
+
+export const useWishlist = () => useContext(WishlistContext);
+
+export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState(() => {
     const stored = localStorage.getItem("wishlist");
     return stored ? JSON.parse(stored) : [];
@@ -22,18 +26,26 @@ const useWishlistContext = () => {
   };
 
   const moveToCart = (product) => {
-    // ✅ You can connect this to a CartContext or cart logic elsewhere
-    console.log("Moving to cart:", product);
+    // This should be handled in CartContext
+    console.log("Move to cart:", product);
     removeFromWishlist(product._id);
-    // Example: send product to cart
   };
 
-  return {
-    wishlist,
-    addToWishlist,
-    removeFromWishlist,
-    moveToCart,
+  const isWishlisted = (productId) => {
+    return wishlist.some((item) => item._id === productId);
   };
+
+  return (
+    <WishlistContext.Provider
+      value={{
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
+        moveToCart,
+        isWishlisted
+      }}
+    >
+      {children}
+    </WishlistContext.Provider>
+  );
 };
-
-export default useWishlistContext;

@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
-import { CartContext } from "../context/CartContext";
-import { WishlistContext } from "../context/WishlistContext";
+import React from "react";
+import { useState } from "react";
+import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
 import "./ShoppingItems.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
@@ -54,8 +55,8 @@ import sunglasses4 from "../assets/images/sunglasses4.jpg";
 
 
 const ShoppingItems = () => {
-  const { addToCart } = useContext(CartContext);
-  const { wishlist, toggleWishlist } = useContext(WishlistContext);
+  const { addToCart } = useCart();
+  const { wishlist, toggleWishlist } = useWishlist();
 
   const [selectedSizes, setSelectedSizes] = useState({});
 

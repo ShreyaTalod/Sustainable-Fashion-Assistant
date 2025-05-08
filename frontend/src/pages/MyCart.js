@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useCart } from "../context/CartContext"; // Updated to use useCart hook
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./MyCart.css";
 
 const MyCart = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
-  const navigate = useNavigate();
+  const { cartItems, removeFromCart, updateQuantity } = useCart(); // Using the useCart hook
+  const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleQuantityChange = (index, newQuantity) => {
     if (newQuantity >= 1) {
@@ -17,14 +18,15 @@ const MyCart = () => {
     removeFromCart(index);
   };
 
-  const handleProceedToBilling = () => {
-    navigate("/billing-success");
-  };
-
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + parseInt(item.price.replace("₹", "")) * item.quantity,
     0
   );
+
+  const handleCheckout = () => {
+    // Navigate to the checkout page
+    navigate("/checkout");
+  };
 
   return (
     <div className="mycart-container">
@@ -54,8 +56,8 @@ const MyCart = () => {
           </div>
           <div className="cart-summary">
             <h3>Total: ₹{totalPrice}</h3>
-            <button onClick={handleProceedToBilling} className="checkout-button">
-              Place Order
+            <button onClick={handleCheckout} className="checkout-button">
+              Proceed to Checkout
             </button>
           </div>
         </>
@@ -65,6 +67,7 @@ const MyCart = () => {
 };
 
 export default MyCart;
+
 
 
 

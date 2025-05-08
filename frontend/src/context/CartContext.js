@@ -16,13 +16,13 @@ export const CartProvider = ({ children }) => {
     }
 
     const existingItem = cartItems.find(
-      item => item.id === product.id && item.size === selectedSize
+      item => item._id === product._id && item.size === selectedSize
     );
 
     if (existingItem) {
       setCartItems(prev =>
         prev.map(item =>
-          item.id === product.id && item.size === selectedSize
+          item._id === product._id && item.size === selectedSize
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -37,29 +37,29 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = (productId, size) => {
     setCartItems(prev =>
-      prev.filter(item => !(item.id === productId && item.size === size))
+      prev.filter(item => !(item._id === productId && item.size === size))
     );
   };
 
   const addToWishlist = (product) => {
-    if (!wishlistItems.find(item => item.id === product.id)) {
+    if (!wishlistItems.find(item => item._id === product._id)) {
       setWishlistItems(prev => [...prev, product]);
     }
   };
 
   const removeFromWishlist = (productId) => {
     setWishlistItems(prev =>
-      prev.filter(item => item.id !== productId)
+      prev.filter(item => item._id !== productId)
     );
   };
 
   const moveToCartFromWishlist = (product, selectedSize) => {
     addToCart(product, selectedSize);
-    removeFromWishlist(product.id);
+    removeFromWishlist(product._id);
   };
 
   const isWishlisted = (productId) => {
-    return wishlistItems.some(item => item.id === productId);
+    return wishlistItems.some(item => item._id === productId);
   };
 
   return (
@@ -79,5 +79,6 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
 
 
