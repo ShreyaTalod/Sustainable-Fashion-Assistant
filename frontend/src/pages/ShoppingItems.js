@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 import "./ShoppingItems.css";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 // T-shirts
 import tshirt1 from "../assets/images/tshirt1.jpg";
