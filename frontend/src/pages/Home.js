@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import logo from "./assets/images/logo.png"; // Update path if it's in a different folder
+import logo from "../assets/images/logo.png"; // Update path if it's in a different folder
 
 const Home = () => {
   return (
