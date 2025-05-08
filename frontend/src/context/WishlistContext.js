@@ -1,7 +1,9 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-export const WishlistContext = createContext();
+// Create the context
+const WishlistContext = createContext();
 
+// Provider component
 export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
 
@@ -11,8 +13,8 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  const removeFromWishlist = (id) => {
-    setWishlist(wishlist.filter((item) => item.id !== id));
+  const removeFromWishlist = (itemId) => {
+    setWishlist(wishlist.filter((item) => item.id !== itemId));
   };
 
   return (
@@ -20,5 +22,10 @@ export const WishlistProvider = ({ children }) => {
       {children}
     </WishlistContext.Provider>
   );
+};
+
+// Custom hook to use the wishlist context
+export const useWishlist = () => {
+  return useContext(WishlistContext);
 };
 
