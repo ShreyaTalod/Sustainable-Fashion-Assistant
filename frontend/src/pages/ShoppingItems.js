@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 import "./ShoppingItems.css";
@@ -110,7 +109,6 @@ const ShoppingItems = () => {
     ],
   };
 
-  
   const sizes = ["XS", "S", "M", "L"];
 
   const handleSizeChange = (itemName, size) => {
@@ -138,11 +136,7 @@ const ShoppingItems = () => {
             {items.map((item, index) => (
               <div key={index} className="product-card">
                 <div className="wishlist-icon" onClick={() => toggleWishlist(item)}>
-                  {isWishlisted(item) ? (
-                    <FaHeart color="red" />
-                  ) : (
-                    <FaRegHeart color="gray" />
-                  )}
+                  {isWishlisted(item) ? "★" : "☆"}
                 </div>
 
                 <img src={item.image} alt={item.name} className="product-image" />
@@ -175,6 +169,4 @@ const ShoppingItems = () => {
 };
 
 export default ShoppingItems;
-
-
 
