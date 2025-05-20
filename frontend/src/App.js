@@ -7,6 +7,7 @@ import MyCart from "./pages/MyCart";
 import BillingSuccess from "./pages/BillingSuccess";
 import Tips from "./pages/Tips";
 import Account from "./pages/Account";
+import Wishlist from "./pages/Wishlist";  // <-- New import for Wishlist page
 import { CartProvider } from "./context/CartContext";
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shopping" element={<ShoppingItems />} />
           <Route path="/mycart" element={<MyCart />} />
+          <Route path="/wishlist" element={<Wishlist />} />  {/* New route */}
           <Route path="/billing-success" element={<BillingSuccess />} />
           <Route path="/tips" element={<Tips />} />
           <Route path="/account" element={<Account />} />
@@ -29,4 +31,5 @@ function App() {
 }
 
 export default App;
+
 

@@ -5,7 +5,9 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
+  // CART HANDLERS
   const addToCart = (item) => {
     // Check if item already exists
     const existingIndex = cartItems.findIndex((i) => i.name === item.name);
@@ -30,6 +32,26 @@ export const CartProvider = ({ children }) => {
     setCartItems(updatedCart);
   };
 
+  // WISHLIST HANDLERS
+  const addToWishlist = (item) => {
+    // Avoid duplicates
+    if (!wishlistItems.find((i) => i.name === item.name)) {
+      setWishlistItems((prev) => [...prev, item]);
+    }
+  };
+
+  const removeFromWishlist = (itemName) => {
+    setWishlistItems(wishlistItems.filter((i) => i.name !== itemName));
+  };
+
+  const moveFromWishlistToCart = (itemName) => {
+    const item = wishlistItems.find((i) => i.name === itemName);
+    if (item) {
+      addToCart(item);
+      removeFromWishlist(itemName);
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -37,12 +59,17 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateQuantity,
         removeFromCart,
+        wishlistItems,
+        addToWishlist,
+        removeFromWishlist,
+        moveFromWishlistToCart,
       }}
     >
       {children}
     </CartContext.Provider>
   );
 };
+
 
 
 

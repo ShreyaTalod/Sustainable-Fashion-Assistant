@@ -51,7 +51,7 @@ import sunglasses3 from "../assets/images/sunglasses3.jpg";
 import sunglasses4 from "../assets/images/sunglasses4.jpg";
 
 const ShoppingItems = () => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, addToWishlist } = useContext(CartContext);
 
   const categories = {
     "Organic T-shirts": [
@@ -127,6 +127,16 @@ const ShoppingItems = () => {
                   }}
                 >
                   Add to Cart
+                </button>
+                <button
+                 className="add-to-wishlist-btn"
+                 onClick={() => {
+                   addToWishlist(item);
+                   alert(`${item.name} added to wishlist!`);
+                 }}
+                 style={{ marginTop: "8px", backgroundColor: "#ff4081", color: "white" }}
+                 >
+                   Add to Wishlist ❤️
                 </button>
               </div>
             ))}
