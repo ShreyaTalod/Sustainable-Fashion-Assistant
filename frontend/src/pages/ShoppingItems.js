@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { CartContext } from "../context/CartContext";
 import "./ShoppingItems.css";
 
@@ -52,6 +52,7 @@ import sunglasses4 from "../assets/images/sunglasses4.jpg";
 
 const ShoppingItems = () => {
   const { addToCart, addToWishlist } = useContext(CartContext);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const categories = {
     "Organic T-shirts": [
@@ -104,47 +105,90 @@ const ShoppingItems = () => {
     ],
   };
 
+  // Filter items based on search term
+  const filteredCategories = useMemo(() => {
+    if (!searchTerm.trim()) {
+      // No search term, return all categories and items
+      return categories;
+    }
+
+    // Filter items in each category by search term (case-insensitive)
+    const filtered = {};
+
+    Object.entries(categories).forEach(([categoryName, items]) => {
+      const matchedItems = items.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (matchedItems.length > 0) {
+        filtered[categoryName] = matchedItems;
+      }
+    });
+
+    return filtered;
+  }, [searchTerm, categories]);
+
   const showAddedMessage = (name) => {
     alert(`${name} added to cart!`);
   };
 
   return (
     <div className="shopping-container">
-      {Object.entries(categories).map(([categoryName, items]) => (
-        <div key={categoryName}>
-          <h2 className="category-heading">{categoryName}</h2>
-          <div className="product-grid">
-            {items.map((item, index) => (
-              <div key={index} className="product-card">
-                <img src={item.image} alt={item.name} className="product-image" />
-                <p className="product-name">{item.name}</p>
-                <p className="product-price">{item.price}</p>
-                <button
-                  className="add-to-cart-btn"
-                  onClick={() => {
-                    addToCart({ ...item, quantity: 1 });
-                    showAddedMessage(item.name);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button
-                 className="add-to-wishlist-btn"
-                 onClick={() => {
-                   addToWishlist(item);
-                   alert(`${item.name} added to wishlist!`);
-                 }}
-                 style={{ marginTop: "8px", backgroundColor: "#ff4081", color: "white" }}
-                 >
-                   Add to Wishlist ❤️
-                </button>
-              </div>
-            ))}
+      {/* Search Bar */}
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
+      {/* Display categories and filtered products */}
+      {Object.entries(filteredCategories).length === 0 ? (
+        <p>No products found matching "{searchTerm}"</p>
+      ) : (
+        Object.entries(filteredCategories).map(([categoryName, items]) => (
+          <div key={categoryName}>
+            <h2 className="category-heading">{categoryName}</h2>
+            <div className="product-grid">
+              {items.map((item, index) => (
+                <div key={index} className="product-card">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="product-image"
+                  />
+                  <p className="product-name">{item.name}</p>
+                  <p className="product-price">{item.price}</p>
+                  <button
+                    className="add-to-cart-btn"
+                    onClick={() => {
+                      addToCart({ ...item, quantity: 1 });
+                      showAddedMessage(item.name);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                  <button
+                    className="add-to-wishlist-btn"
+                    onClick={() => {
+                      addToWishlist(item);
+                      alert(`${item.name} added to wishlist!`);
+                    }}
+                    style={{ marginTop: "8px", backgroundColor: "#ff4081", color: "white" }}
+                  >
+                    Add to Wishlist ❤️
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };
 
 export default ShoppingItems;
+
