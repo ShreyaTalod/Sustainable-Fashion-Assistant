@@ -1,10 +1,14 @@
+// src/pages/SignUp.js
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // for redirection
 import "./Login.css";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -22,8 +26,12 @@ const SignUp = () => {
 
       if (response.ok) {
         alert("✅ Registration successful!");
-        console.log("User registered:", data);
-        // Optionally redirect to login or home
+
+        // Save user info to localStorage
+        localStorage.setItem("userInfo", JSON.stringify(data));
+
+        // Redirect to home page or login
+        navigate("/");
       } else {
         alert(`❌ Registration failed: ${data.message || "Try again"}`);
       }
@@ -66,4 +74,5 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
 

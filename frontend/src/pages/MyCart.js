@@ -9,7 +9,7 @@ const MyCart = () => {
   const navigate = useNavigate();
 
   const handleQuantityChange = (index, change) => {
-    const newQuantity = cartItems[index].quantity + change;
+    const newQuantity = cartItems[index]?.quantity + change;
     if (newQuantity > 0) {
       updateQuantity(index, newQuantity);
     }
@@ -23,10 +23,10 @@ const MyCart = () => {
     navigate("/billing-success");
   };
 
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + parseInt(item.price.replace("₹", "")) * item.quantity,
-    0
-  );
+  const totalPrice = cartItems.reduce((acc, item) => {
+    const itemPrice = parseInt(item.price.replace("₹", ""));
+    return acc + itemPrice * item.quantity;
+  }, 0);
 
   return (
     <div className="mycart-container">
@@ -67,6 +67,7 @@ const MyCart = () => {
 };
 
 export default MyCart;
+
 
 
 
